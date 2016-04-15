@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :likers, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    member do
+      post :start
+      post :stop
+    end
+  end
 
-  # Serve websocket cable requests in-process
-  # mount ActionCable.server => '/cable'
+  root to: redirect("/likers/new")
 end

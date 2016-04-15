@@ -1,0 +1,44 @@
+<dl>
+  <dt>Facebook ID</dt>
+  <dd><%= @liker.facebook_id %></dd>
+
+  <dt>Facebook token</dt>
+  <dd><%= @liker.facebook_token[0..20] %>...</dd>
+
+  <dt>Running</dt>
+  <dd><% if @liker.running %>Yes<% else %>No<% end %></dd>
+</dl>
+
+<% if @liker.error.present? %>
+  <div>
+    <p>Liker error:</p>
+    <pre><code>
+<%= @liker.error %>
+    </code></pre>
+
+    <p>Failed at: <%= @liker.failed_at %></p>
+  </div>
+<% end %>
+
+<div>
+  <% if @liker.running %>
+    <%= link_to "Stop", stop_liker_path(@liker), method: :post %>
+  <% else %>
+    <%= link_to "Start", start_liker_path(@liker), method: :post %>
+  <% end %> |
+  <%= link_to "Edit", edit_liker_path(@liker) %> |
+  <%= link_to "Delete", @liker, method: :delete, data: { confirm: "Sure?" } %>
+</div>
+
+<% if @liker.likes.any? %>
+  <hr>
+  <h2>People liked</h2>
+
+  <div>
+    <% @liker.likes.order(created_at: :desc).map(&:tinder_user).each do |tinder_user| %>
+      <%= render tinder_user %>
+    <% end %>
+  </div>
+<% else %>
+  <p>Not liked anyone yet</p>
+<% end %>

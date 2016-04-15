@@ -1,0 +1,29 @@
+<% if @liker.errors.present? %>
+  <p>There were the following errors:</p>
+  <ul>
+    <% @liker.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @liker do |f| %>
+  <div class="field">
+    <label>
+      Facebook ID
+      <%= f.text_field :facebook_id %>
+    </label>
+  </div>
+
+  <div class="field">
+    <label>
+      Facebook token
+      <%= f.text_field :facebook_token %>
+    </label>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
