@@ -20,7 +20,7 @@ App.message = App.cable.subscriptions.create "MessageChannel",
       if $(element).attr("data-messaged") is "false"
         ids.push $(element).attr("data-tinder-match-id")
     console.log ids
-    message = "Hello :)"
+    message = prompt "What do you wanna say?"
 
     @perform(
       "start_messaging"
