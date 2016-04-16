@@ -8,9 +8,9 @@ class MatchFinder < ApplicationRecord
 
   def stop
     update!(running: false)
-    # html = ApplicationController.renderer.render(partial: "likers/actions",
-    #                                              locals: { liker: self.reload })
-    # ActionCable.server.broadcast("liker_stopped", liker: html)
+    html = ApplicationController.renderer.render(partial: "matches/actions",
+                                                 locals: { match_finder: self })
+    ActionCable.server.broadcast("match_finder_stopped", match_finder: html)
   end
 
   def failed(message:)
