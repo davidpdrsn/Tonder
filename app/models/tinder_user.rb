@@ -20,12 +20,4 @@ class TinderUser < ApplicationRecord
   def image_urls
     images.pluck(:url)
   end
-
-  def broadcast_like
-    html = ApplicationController.renderer.render(
-      partial: "tinder_users/tinder_user",
-      locals: { tinder_user: self },
-    )
-    ActionCable.server.broadcast "liked_users", tinder_user: html
-  end
 end

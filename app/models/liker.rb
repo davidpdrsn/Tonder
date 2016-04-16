@@ -15,6 +15,7 @@ class Liker < ApplicationRecord
     html = ApplicationController.renderer.render(partial: "likers/liker",
                                                  locals: { liker: self.reload })
     ActionCable.server.broadcast("liker_stopped", liker: html)
+    look_for_new_matches
   end
 
   def failed(message:)
