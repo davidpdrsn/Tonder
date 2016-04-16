@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :tinder_users, only: [:show]
+
   root to: redirect("/likers/new")
 
   mount ActionCable.server => "/cable"

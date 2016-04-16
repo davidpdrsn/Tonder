@@ -1,0 +1,13 @@
+<strong>Name:</strong> <%= @tinder_user.name %><br>
+<strong>Bio:</strong> <%= @tinder_user.bio %><br>
+<strong>Gender:</strong> <%= @tinder_user.gender %><br>
+<strong>Age:</strong> <%= Time.zone.now.year - @tinder_user.birth_date.year %><br>
+<strong>Liked at:</strong> <%= @tinder_user.created_at %>
+
+<div class="images">
+  <% @tinder_user.image_urls.each do |url| %>
+    <a href="<%= url %>">
+      <img src="<%= url %>" style="width: 200px">
+    </a>
+  <% end %>
+</div>

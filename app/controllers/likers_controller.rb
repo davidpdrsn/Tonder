@@ -49,14 +49,12 @@ class LikersController < ApplicationController
   def start
     @liker = Liker.find(params[:id])
     @liker.start
-    flash.notice = "Liker started!"
     redirect_to @liker
   end
 
   def stop
     @liker = Liker.find(params[:id])
     @liker.stop
-    flash.notice = "Liker stopped!"
     redirect_to @liker
   end
 

@@ -1,12 +1,7 @@
-<dl>
-  <dt>Facebook ID</dt>
-  <dd><%= liker.facebook_id %></dd>
-
-  <dt>Facebook token</dt>
-  <dd><%= liker.facebook_token[0..20] %>...</dd>
-
-  <dt>Running</dt>
-  <dd>
+<div>
+  <strong>Facebook ID:</strong> <%= liker.facebook_id %><br>
+  <strong>Facebook token:</strong> <%= liker.facebook_token[0..20] %>...<br>
+  <strong>Running:</strong>
   <% if liker.running %>
     <span style="color: green; font-size: 20px; font-weight: bold;">
       Yes
@@ -16,8 +11,7 @@
       No
     </span>
   <% end %>
-  </dd>
-</dl>
+</div>
 
 <div>
   <% if liker.error.present? %>
