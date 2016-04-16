@@ -1,4 +1,4 @@
-App.liked_users = App.cable.subscriptions.create "LikedUsersChannel",
+App.match_found = App.cable.subscriptions.create "MatchFoundChannel",
   connected: ->
     # Called when the subscription is ready for use on the server
 
@@ -8,5 +8,5 @@ App.liked_users = App.cable.subscriptions.create "LikedUsersChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     html = data["tinder_user"]
-    console.log "LikedUsersChannel"
-    $(".likes").prepend(html)
+    console.log "MatchFoundChannel"
+    $(".matches").prepend(html)

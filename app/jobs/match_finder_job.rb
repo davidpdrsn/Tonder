@@ -16,7 +16,8 @@ class MatchFinderJob < ApplicationJob
         tinder_user = TinderUser.create_from_json(user, liker)
       end
 
-      liker.matches.find_or_create_by!(tinder_user: tinder_user)
+      match = liker.matches.find_or_create_by!(tinder_user: tinder_user)
+      match.broadcast_match
     end
   end
 end

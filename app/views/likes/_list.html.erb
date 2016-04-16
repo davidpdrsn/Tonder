@@ -1,5 +1,0 @@
-<div class="likes">
-  <% liker.likes.map(&:tinder_user).sort_by(&:created_at).reverse.each do |tinder_user| %>
-    <%= render tinder_user %>
-  <% end %>
-</div>
