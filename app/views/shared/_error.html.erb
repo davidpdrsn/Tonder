@@ -1,0 +1,8 @@
+<div>
+  <% if errorable.error.present? %>
+    <p>Error:</p>
+    <pre><code><%= errorable.error %></code></pre>
+
+    <p>Failed at: <%= errorable.failed_at %></p>
+  <% end %>
+</div>

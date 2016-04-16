@@ -3,7 +3,13 @@ Rails.application.routes.draw do
     member do
       post :start
       post :stop
-      get :look_for_new_matches
+    end
+
+    resource :match_finder, only: [] do
+      collection do
+        post :start
+        post :stop
+      end
     end
   end
 

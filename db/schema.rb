@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416022752) do
+ActiveRecord::Schema.define(version: 20160416101226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 20160416022752) do
 
   add_index "likes", ["liker_id"], name: "index_likes_on_liker_id", using: :btree
   add_index "likes", ["tinder_user_id"], name: "index_likes_on_tinder_user_id", using: :btree
+
+  create_table "match_finders", force: :cascade do |t|
+    t.integer  "liker_id",                   null: false
+    t.boolean  "running",    default: false
+    t.text     "error"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.datetime "failed_at"
+  end
+
+  add_index "match_finders", ["liker_id"], name: "index_match_finders_on_liker_id", using: :btree
 
   create_table "matches", force: :cascade do |t|
     t.integer  "liker_id",       null: false

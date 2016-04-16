@@ -7,6 +7,10 @@
 <div style="float: left; width: 50%;">
   <h2>Matches</h2>
 
+  <div class="matches-actions">
+    <%= render partial: "matches/actions", locals: { match_finder: @liker.match_finder } %>
+  </div>
+
   <div class="matches">
     <% @liker.matches.order(created_at: :desc).each do |match| %>
       <%= render match.tinder_user %>
@@ -16,6 +20,10 @@
 
 <div style="float: left; width: 50%">
   <h2>People liked</h2>
+
+  <div class="liker-actions">
+    <%= render partial: "likers/actions", locals: { liker: @liker } %>
+  </div>
 
   <div class="likes">
     <% @liker.likes.map(&:tinder_user).sort_by(&:created_at).reverse.each do |tinder_user| %>

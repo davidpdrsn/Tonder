@@ -6,6 +6,4 @@ App.liker_stopped = App.cable.subscriptions.create "LikerStoppedChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    html = data["liker"]
-    console.log "LikerStoppedChannel"
-    $(".liker").html(html)
+    $(".liker-actions").html data["liker"]

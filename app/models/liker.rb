@@ -2,6 +2,7 @@ class Liker < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :tinder_users, dependent: :destroy
   has_many :matches, dependent: :destroy
+  has_one :match_finder, dependent: :destroy
 
   validates :facebook_id, :facebook_token, presence: true
 
@@ -12,10 +13,10 @@ class Liker < ApplicationRecord
 
   def stop
     update!(running: false)
-    html = ApplicationController.renderer.render(partial: "likers/liker",
+    html = ApplicationController.renderer.render(partial: "likers/actions",
                                                  locals: { liker: self.reload })
     ActionCable.server.broadcast("liker_stopped", liker: html)
-    look_for_new_matches
+    match_finder.start
   end
 
   def failed(message:)
@@ -29,7 +30,9 @@ class Liker < ApplicationRecord
     client
   end
 
-  def look_for_new_matches
-    MatchFinderJob.perform_later(self)
+  def match_finder
+    finder = super
+    MatchFinder.create!(liker: self) if finder.nil?
+    finder
   end
 end

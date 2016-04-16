@@ -17,6 +17,11 @@ class TinderUser < ApplicationRecord
     user
   end
 
+  def matched?
+    # TODO: Scope this when we have users
+    matches.any?
+  end
+
   def image_urls
     images.pluck(:url)
   end

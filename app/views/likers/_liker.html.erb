@@ -1,36 +1,9 @@
 <div>
   <strong>Facebook ID:</strong> <%= liker.facebook_id %><br>
   <strong>Facebook token:</strong> <%= liker.facebook_token[0..20] %>...<br>
-  <strong>Running:</strong>
-  <% if liker.running %>
-    <span style="color: green; font-size: 20px; font-weight: bold;">
-      Yes
-    </span>
-  <% else %>
-    <span style="color: red; font-size: 20px; font-weight: bold;">
-      No
-    </span>
-  <% end %>
 </div>
 
 <div>
-  <% if liker.error.present? %>
-    <p>Liker error:</p>
-    <pre><code>
-  <%= liker.error %>
-    </code></pre>
-
-    <p>Failed at: <%= liker.failed_at %></p>
-  <% end %>
-</div>
-
-<div>
-  <% if liker.running %>
-    <%= link_to "Stop liking", stop_liker_path(liker), method: :post %>
-  <% else %>
-    <%= link_to "Start liking", start_liker_path(liker), method: :post %>
-  <% end %> |
-  <%= link_to "Look for new matches", look_for_new_matches_liker_path(liker) %> |
   <%= link_to "Edit", edit_liker_path(liker) %> |
   <%= link_to "Delete", liker, method: :delete, data: { confirm: "Sure?" } %>
 </div>
