@@ -2,6 +2,8 @@ class MatchFinderJob < ApplicationJob
   queue_as :default
 
   def perform(match_finder)
+    return unless match_finder.running
+
     liker = match_finder.liker
     client = liker.client
 
