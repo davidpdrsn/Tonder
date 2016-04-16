@@ -29,8 +29,12 @@ class Liker < ApplicationRecord
 
   def match_finder
     finder = super
-    MatchFinder.create!(liker: self) if finder.nil?
-    finder
+
+    if finder.nil?
+      MatchFinder.create!(liker: self)
+    else
+      finder
+    end
   end
 
   private

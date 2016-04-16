@@ -1,7 +1,8 @@
 class TinderUser < ApplicationRecord
   has_many :images, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :matches
+  has_many :matches, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   def self.create_from_json(json, liker)
     user = TinderUser.create!(
@@ -17,9 +18,12 @@ class TinderUser < ApplicationRecord
     user
   end
 
-  def matched?
-    # TODO: Scope this when we have users
-    matches.any?
+  def matched_by?(liker)
+    matches.where(liker: liker).any?
+  end
+
+  def messaged_by?(liker)
+    messages.where(liker: liker).any?
   end
 
   def image_urls

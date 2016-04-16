@@ -1,7 +1,11 @@
-<div style="display: inline-block; position: relative;">
-  <% if tinder_user.matched? %>
-    <input type="checkbox" style="position: absolute; top: 3px; right: 5px;">
+<div
+  <% if tinder_user.matched_by?(liker) %>
+    data-tinder-match-id="<%= tinder_user.matches.find_by!(liker: liker).tinder_id %>"
   <% end %>
+  data-messaged="<%= tinder_user.messaged_by?(liker) %>"
+  style="display: inline-block; position: relative;">
+
+  <%= render partial: "shared/messaged_indicator", locals: { liker: liker, tinder_user: tinder_user } %>
 
   <%= link_to tinder_user do %>
     <img src="<%= tinder_user.image_urls.first %>" style="width: 200px">

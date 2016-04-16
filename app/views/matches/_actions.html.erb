@@ -3,7 +3,8 @@
     <%= link_to "Stop looking for matches", stop_liker_match_finder_path(match_finder.liker), method: :post %>
   <% else %>
     <%= link_to "Start looking for matches", start_liker_match_finder_path(match_finder.liker), method: :post %>
-  <% end %>
+  <% end %> |
+  <a href="#" data-behavior="message-matches">Message</a>
 </div>
 
 <%= render partial: "shared/error", locals: { errorable: match_finder } %>

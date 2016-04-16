@@ -1,0 +1,8 @@
+<% if tinder_user.messaged_by?(liker) %>
+  <% color = "lime" %>
+<% else %>
+  <% color = "red" %>
+<% end %>
+
+<div style="width: 10px; height: 10px; border-radius: 100%; background: <%= color %>; position: absolute; top: 5px; right: 5px;">
+</div>

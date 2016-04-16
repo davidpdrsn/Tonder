@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416101226) do
+ActiveRecord::Schema.define(version: 20160416132802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,10 +77,23 @@ ActiveRecord::Schema.define(version: 20160416101226) do
     t.integer  "tinder_user_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "tinder_id",      null: false
   end
 
   add_index "matches", ["liker_id"], name: "index_matches_on_liker_id", using: :btree
   add_index "matches", ["tinder_user_id"], name: "index_matches_on_tinder_user_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "tinder_user_id", null: false
+    t.integer  "liker_id",       null: false
+    t.text     "message"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "match_id",       null: false
+  end
+
+  add_index "messages", ["liker_id"], name: "index_messages_on_liker_id", using: :btree
+  add_index "messages", ["tinder_user_id"], name: "index_messages_on_tinder_user_id", using: :btree
 
   create_table "tinder_users", force: :cascade do |t|
     t.string   "tinder_id",  null: false

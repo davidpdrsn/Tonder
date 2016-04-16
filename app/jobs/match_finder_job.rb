@@ -14,16 +14,19 @@ class MatchFinderJob < ApplicationJob
       return
     end
 
-    matches.each do |user|
-      next unless user["person"].present?
-      user = user["person"]
+    matches.each do |match|
+      next unless match["person"].present?
+      user = match["person"]
 
       tinder_user = TinderUser.find_by(tinder_id: user["_id"])
       if tinder_user.nil?
         tinder_user = TinderUser.create_from_json(user, liker)
       end
 
-      liker.matches.find_or_create_by!(tinder_user: tinder_user)
+      liker.matches.find_or_create_by!(
+        tinder_user: tinder_user,
+        tinder_id: match["_id"],
+      )
     end
 
     self.class.set(wait: 10.minutes).perform_later(match_finder)
