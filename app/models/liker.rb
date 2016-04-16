@@ -1,6 +1,7 @@
 class Liker < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :tinder_users, dependent: :destroy
+  has_many :matches, dependent: :destroy
 
   validates :facebook_id, :facebook_token, presence: true
 
@@ -25,5 +26,9 @@ class Liker < ApplicationRecord
     client = TinderPyro::Client.new
     client.sign_in(facebook_id, facebook_token)
     client
+  end
+
+  def look_for_new_matches
+    MatchFinderJob.perform_later(self)
   end
 end

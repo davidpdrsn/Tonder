@@ -58,6 +58,12 @@ class LikersController < ApplicationController
     redirect_to @liker
   end
 
+  def look_for_new_matches
+    @liker = Liker.find(params[:id])
+    @liker.look_for_new_matches
+    redirect_to @liker
+  end
+
   private
 
   def liker_params

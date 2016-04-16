@@ -39,6 +39,7 @@ class LikerJob < ApplicationJob
 
       if tinder_user.nil?
         tinder_user = TinderUser.create_from_json(user, liker)
+        tinder_user.broadcast_like
       end
 
       like_user(tinder_user)
