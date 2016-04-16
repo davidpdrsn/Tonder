@@ -3,17 +3,19 @@
 </div>
 
 <hr>
-<h2>Matches</h2>
-<div class="matches-list">
-  <p><%= link_to "Look for new matches", look_for_new_matches_liker_path(@liker) %></p>
 
-  <% @liker.matches.each do |match| %>
-    <%= render match.tinder_user %>
-  <% end %>
+<div style="float: left; width: 50%;">
+  <h2>Matches</h2>
+  <div class="matches-list">
+    <% @liker.matches.each do |match| %>
+      <%= render match.tinder_user %>
+    <% end %>
+  </div>
 </div>
 
-<hr>
-<h2>People liked</h2>
-<div class="likes-list">
-  <%= render partial: "likes/list", locals: { liker: @liker } %>
+<div style="float: left; width: 50%">
+  <h2>People liked</h2>
+  <div class="likes-list">
+    <%= render partial: "likes/list", locals: { liker: @liker } %>
+  </div>
 </div>

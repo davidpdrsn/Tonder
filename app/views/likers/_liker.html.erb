@@ -26,10 +26,11 @@
 
 <div>
   <% if liker.running %>
-    <%= link_to "Stop", stop_liker_path(liker), method: :post %>
+    <%= link_to "Stop liking", stop_liker_path(liker), method: :post %>
   <% else %>
-    <%= link_to "Start", start_liker_path(liker), method: :post %>
+    <%= link_to "Start liking", start_liker_path(liker), method: :post %>
   <% end %> |
+  <%= link_to "Look for new matches", look_for_new_matches_liker_path(liker) %> |
   <%= link_to "Edit", edit_liker_path(liker) %> |
   <%= link_to "Delete", liker, method: :delete, data: { confirm: "Sure?" } %>
 </div>
