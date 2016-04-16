@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   end
 
   root to: redirect("/likers/new")
+
+  mount ActionCable.server => "/cable"
 end

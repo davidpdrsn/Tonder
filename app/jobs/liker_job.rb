@@ -7,8 +7,9 @@ class LikerJob < ApplicationJob
 
     like_nearby_users
 
-    liker.stop
-    self.class.perform_later(liker) if liker.running
+    liker.stop if liker.running
+
+    # self.class.perform_later(liker) if liker.running
   rescue => error
     liker.failed(message: "#{error.message}\n#{error.backtrace.join("\n")}")
     raise error

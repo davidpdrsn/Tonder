@@ -11,11 +11,14 @@ class Liker < ApplicationRecord
 
   def stop
     update!(running: false)
+    html = ApplicationController.renderer.render(partial: "likers/liker",
+                                                 locals: { liker: self.reload })
+    ActionCable.server.broadcast("liker_stopped", liker: html)
   end
 
   def failed(message:)
-    stop
     update!(error: message, failed_at: Time.now)
+    stop
   end
 
   def client

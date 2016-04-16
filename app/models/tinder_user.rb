@@ -13,6 +13,13 @@ class TinderUser < ApplicationRecord
     json["photos"].each do |photo|
       user.images.create!(url: photo["url"])
     end
+
+    html = ApplicationController.renderer.render(
+      partial: "tinder_users/tinder_user",
+      locals: { tinder_user: user },
+    )
+    ActionCable.server.broadcast "liked_users", tinder_user: html
+
     user
   end
 
