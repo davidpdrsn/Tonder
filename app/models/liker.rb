@@ -13,10 +13,7 @@ class Liker < ApplicationRecord
 
   def stop
     update!(running: false)
-    html = ApplicationController.renderer.render(partial: "likers/actions",
-                                                 locals: { liker: self.reload })
-    ActionCable.server.broadcast("liker_stopped", liker: html)
-    match_finder.start
+    broadcast
   end
 
   def failed(message:)
@@ -34,5 +31,13 @@ class Liker < ApplicationRecord
     finder = super
     MatchFinder.create!(liker: self) if finder.nil?
     finder
+  end
+
+  private
+
+  def broadcast
+    html = ApplicationController.renderer.render(partial: "likers/actions",
+                                                 locals: { liker: self.reload })
+    ActionCable.server.broadcast("liker_stopped", liker: html)
   end
 end
