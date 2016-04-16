@@ -5,7 +5,10 @@ class Match < ApplicationRecord
   after_create_commit do
     html = ApplicationController.renderer.render(
       partial: "tinder_users/tinder_user",
-      locals: { tinder_user: tinder_user },
+      locals: {
+        tinder_user: tinder_user,
+        liker: liker,
+      },
     )
     ActionCable.server.broadcast "match_found", tinder_user: html
   end

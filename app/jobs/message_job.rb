@@ -1,9 +1,12 @@
 class MessageJob < ApplicationJob
   queue_as :default
 
-  def perform(message:, match_tinder_ids:)
-    matches = Match.where(tinder_id: match_tinder_ids)
-    return unless matches.present?
+  def perform(message:, match_ids:)
+    matches = Match.where(id: match_ids)
+    unless matches.present?
+      Rails.logger.debug "No matches found"
+      return
+    end
 
     liker = matches.first.liker
     client = liker.client
@@ -11,7 +14,10 @@ class MessageJob < ApplicationJob
     matches.each do |match|
       tinder_user = match.tinder_user
 
-      return unless tinder_user.messages.where(liker: liker).empty?
+      unless tinder_user.messages.where(liker: liker).empty?
+        Rails.logger.debug "No messages found"
+        return
+      end
 
       response = client.send_message(
         match.tinder_id,

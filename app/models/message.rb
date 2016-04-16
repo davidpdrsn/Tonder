@@ -6,13 +6,16 @@ class Message < ApplicationRecord
   after_create_commit do
     html = ApplicationController.renderer.render(
       partial: "tinder_users/tinder_user",
-      locals: { tinder_user: tinder_user },
+      locals: {
+        tinder_user: tinder_user,
+        liker: liker,
+      },
     )
     ActionCable.server.broadcast(
       "message",
       type: "sent_message",
       tinder_user_html: html,
-      tinder_match_id: match.tinder_id,
+      tinder_match_id: match.id,
     )
   end
 end

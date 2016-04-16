@@ -1,6 +1,6 @@
 <div
   <% if tinder_user.matched_by?(liker) %>
-    data-tinder-match-id="<%= tinder_user.matches.find_by!(liker: liker).tinder_id %>"
+    data-tinder-match-id="<%= tinder_user.matches.find_by!(liker: liker).id %>"
   <% end %>
   data-messaged="<%= tinder_user.messaged_by?(liker) %>"
   style="display: inline-block; position: relative;">

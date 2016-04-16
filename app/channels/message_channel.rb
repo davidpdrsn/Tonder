@@ -9,12 +9,9 @@ class MessageChannel < ApplicationCable::Channel
   end
 
   def start_messaging(data)
-    raise "Too many likers" if Liker.count > 1
-    raise "No likers" if Liker.count.zero?
-
     MessageJob.perform_later(
       message: data["message"],
-      match_tinder_ids: data["tinder_ids"],
+      match_ids: data["match_ids"],
     )
   end
 end

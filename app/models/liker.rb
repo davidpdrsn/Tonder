@@ -1,4 +1,5 @@
 class Liker < ApplicationRecord
+  belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :tinder_users, dependent: :destroy
   has_many :matches, dependent: :destroy

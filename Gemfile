@@ -27,6 +27,7 @@ gem 'tinder_pyro', require: 'pyro'
 
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
+gem 'clearance', github: 'thoughtbot/clearance', branch: 'master'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

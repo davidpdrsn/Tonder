@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/thoughtbot/clearance.git
+  revision: 881d73483294afe9c91c458199b8481ae53ee294
+  branch: master
+  specs:
+    clearance (1.13.0)
+      bcrypt
+      email_validator (~> 1.4)
+      rails (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -39,6 +49,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.0.0)
+    bcrypt (3.1.11)
     builder (3.2.2)
     byebug (8.2.4)
     coffee-rails (4.1.1)
@@ -55,6 +66,8 @@ GEM
     delayed_job_active_record (4.1.0)
       activerecord (>= 3.0, < 5)
       delayed_job (>= 3.0, < 5)
+    email_validator (1.6.0)
+      activemodel
     erubis (2.7.0)
     execjs (2.6.0)
     ffi (1.9.10)
@@ -171,6 +184,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  clearance!
   coffee-rails (~> 4.1.0)
   delayed_job_active_record
   jbuilder (~> 2.0)

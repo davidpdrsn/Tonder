@@ -22,11 +22,12 @@ App.message = App.cable.subscriptions.create "MessageChannel",
     console.log ids
     message = prompt "What do you wanna say?"
 
-    @perform(
-      "start_messaging"
-      tinder_ids: ids
-      message: message
-    )
+    unless message is ""
+      @perform(
+        "start_messaging"
+        match_ids: ids
+        message: message
+      )
 
 $(document).on "click", "[data-behavior~=message-matches]", (e) ->
   App.message.startMessaging()
