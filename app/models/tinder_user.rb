@@ -27,6 +27,6 @@ class TinderUser < ApplicationRecord
   end
 
   def image_urls
-    images.pluck(:url)
+    images.pluck(:url).sort
   end
 end
