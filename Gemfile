@@ -62,3 +62,4 @@ gem "capistrano-rails"
 gem "capistrano-rbenv"
 gem "capistrano-deploytags", "~> 1.0.0", require: false
 
+gem "figaro"
