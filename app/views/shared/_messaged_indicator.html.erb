@@ -4,5 +4,14 @@
   <% color = "red" %>
 <% end %>
 
-<div style="width: 10px; height: 10px; border-radius: 100%; background: <%= color %>; position: absolute; top: 5px; right: 5px;">
-</div>
+<% if on_match_view %>
+  <span
+    style="width: 10px; height: 10px; border-radius: 100%; background: <%= color %>; position: absolute; top: 5px; right: 5px;"></span>
+  <input
+    type="checkbox"
+    <% if tinder_user.messaged_by?(liker) %>
+      checked
+      disabled
+    <% end %>
+    style="border-radius: 100%; position: absolute; top: 17px; right: 2px;">
+<% end %>

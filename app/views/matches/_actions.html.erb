@@ -4,7 +4,9 @@
   <% else %>
     <%= link_to "Start looking for matches", start_liker_match_finder_path(match_finder.liker), method: :post %>
   <% end %> |
-  <a href="#" data-behavior="message-matches">Message new matches</a>
+  <a href="#" data-behavior="message-matches">Message selected people</a> |
+  <a href="#" data-behavior="select-all">Select all</a> |
+  <a href="#" data-behavior="select-none">Select none</a>
 </div>
 
 <%= render partial: "shared/error", locals: { errorable: match_finder } %>

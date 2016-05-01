@@ -13,7 +13,7 @@
 
   <div class="matches">
     <% @liker.matches.order(created_at: :desc).each do |match| %>
-      <%= render partial: "tinder_users/tinder_user", locals: { tinder_user: match.tinder_user, liker: @liker } %>
+      <%= render partial: "tinder_users/tinder_user", locals: { tinder_user: match.tinder_user, liker: @liker, on_match_view: true } %>
     <% end %>
   </div>
 </div>
@@ -27,7 +27,7 @@
 
   <div class="likes">
     <% @liker.likes.map(&:tinder_user).sort_by(&:created_at).reverse.each do |tinder_user| %>
-      <%= render partial: "tinder_users/tinder_user", locals: { tinder_user: tinder_user, liker: @liker } %>
+      <%= render partial: "tinder_users/tinder_user", locals: { tinder_user: tinder_user, liker: @liker, on_match_view: false } %>
     <% end %>
   </div>
 </div>

@@ -5,7 +5,7 @@
   data-messaged="<%= tinder_user.messaged_by?(liker) %>"
   style="display: inline-block; position: relative;">
 
-  <%= render partial: "shared/messaged_indicator", locals: { liker: liker, tinder_user: tinder_user } %>
+  <%= render partial: "shared/messaged_indicator", locals: { liker: liker, tinder_user: tinder_user, on_match_view: on_match_view } %>
 
   <%= link_to tinder_user do %>
     <img src="<%= tinder_user.image_urls.first %>" style="width: 200px">
