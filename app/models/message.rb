@@ -9,6 +9,7 @@ class Message < ApplicationRecord
       locals: {
         tinder_user: tinder_user,
         liker: liker,
+        on_match_view: true,
       },
     )
     ActionCable.server.broadcast(

@@ -14,6 +14,12 @@ App.message = App.cable.subscriptions.create "MessageChannel",
       el.after data.tinder_user_html
       el.remove()
 
+  pretendMessage: (id) ->
+    @perform(
+      "pretend_message"
+      match_id: id
+    )
+
   startMessaging: ->
     ids = []
     $(".matches [data-tinder-match-id]").each (_index, element) ->
@@ -43,4 +49,9 @@ $(document).on "click", "[data-behavior~=select-all]", (e) ->
 
 $(document).on "click", "[data-behavior~=select-none]", (e) ->
   $(".matches input[type=checkbox]:not([disabled])").prop 'checked', false
+  e.preventDefault()
+
+$(document).on "click", "[data-behavior~=pretend-message]", (e) ->
+  matchId = $(@).parents("[data-tinder-match-id]").first().attr("data-tinder-match-id")
+  App.message.pretendMessage(matchId)
   e.preventDefault()

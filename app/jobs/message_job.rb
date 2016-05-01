@@ -19,16 +19,18 @@ class MessageJob < ApplicationJob
         return
       end
 
-      response = client.send_message(
-        match.tinder_id,
-        message,
-      )
-      ActionCable.server.broadcast(
-        "message",
-        type: "response",
-        response: response,
-      )
-      return unless response["sent_date"].present?
+      unless message == "__pretend_message__"
+        response = client.send_message(
+          match.tinder_id,
+          message,
+        )
+        ActionCable.server.broadcast(
+          "message",
+          type: "response",
+          response: response,
+        )
+        return unless response["sent_date"].present?
+      end
 
       tinder_user.messages.create!(
         liker: liker,

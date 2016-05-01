@@ -13,5 +13,11 @@
       checked
       disabled
     <% end %>
-    style="border-radius: 100%; position: absolute; top: 17px; right: 2px;">
+    style="position: absolute; top: 17px; right: 2px;">
+  <% unless tinder_user.messaged_by?(liker) %>
+    <a href="#"
+       data-behavior="pretend-message"
+       style="position: absolute; top: 35px; right: 0px; font-size: 14px; text-decoration: none;"
+       title="Ignore this user">❌ </a>
+  <% end %>
 <% end %>

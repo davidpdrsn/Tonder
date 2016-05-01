@@ -14,4 +14,11 @@ class MessageChannel < ApplicationCable::Channel
       match_ids: data["match_ids"],
     )
   end
+
+  def pretend_message(data)
+    MessageJob.perform_now(
+      message: "__pretend_message__",
+      match_ids: [data["match_id"]],
+    )
+  end
 end
