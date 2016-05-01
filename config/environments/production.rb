@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # Action Cable endpoint configuration
   config.action_cable.url = 'wss://tonder.club/cable'
-  config.action_cable.allowed_request_origins = ['http://tonder.club']
+  config.action_cable.allowed_request_origins = ['http://tonder.club', 'http://82.196.13.18']
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
