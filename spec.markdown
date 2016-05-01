@@ -1,4 +1,4 @@
-# Tinderlol
+# Tonder
 
 Put in facebook ID and token
 Start a background job that likes everyone

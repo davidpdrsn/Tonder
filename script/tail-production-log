@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+ssh tonder tail -f /home/tonder/tonder/shared/log/production.log
