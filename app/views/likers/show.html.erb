@@ -26,7 +26,7 @@
   </div>
 
   <div class="likes">
-    <% @liker.likes.map(&:tinder_user).sort_by(&:created_at).reverse.each do |tinder_user| %>
+    <% @liker.likes.map(&:tinder_user).sort_by(&:created_at).reverse.first(25).each do |tinder_user| %>
       <%= render partial: "tinder_users/tinder_user", locals: { tinder_user: tinder_user, liker: @liker, on_match_view: false } %>
     <% end %>
   </div>
